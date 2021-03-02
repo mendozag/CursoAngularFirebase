@@ -1,0 +1,95 @@
+<p>Catalogo</p>
+<div
+  class="card"
+  style="width: 18rem; margin-bottom: 15px;"
+  *ngFor="let producto of productos"
+>
+  <div class="card-body bg-light">
+    <h5 class="card-title">{{producto.nombre}} - {{producto.marca}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      {{producto.id}}
+    </h6>
+    <p class="card-subtitle mb-2 text-muted">
+      {{producto.uid}}
+    </p>
+    <p class="card-text">${{producto.precio}}.00</p>
+    <button class="btn btn-danger mr-4 btn-sm" (click)="eliminar(producto)">
+      Borrar
+    </button>
+    <button
+      class="btn btn-primary btn-sm"
+      (click)="editar(producto)"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Editar
+    </button>
+  </div>
+</div>
+
+<!-- Ventana Modal para editar -->
+<!-- Button trigger modal -->
+<!-- <button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#exampleModal"
+>
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Editar: {{productoEditar.nombre}} - {{productoEditar.marca}}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="agregarProductoEditado()">
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="Nombre Producto"
+            [(ngModel)]="productoEditar.nombre"
+          /><br />
+          <input
+            type="text"
+            class="form-control"
+            name="marca"
+            placeholder="Marca del Producto"
+            [(ngModel)]="productoEditar.marca"
+          /><br />
+          <input
+            type="text"
+            class="form-control"
+            name="precio"
+            placeholder="Precio del Producto"
+            [(ngModel)]="productoEditar.precio"
+          /><br />
+          <button class="btn btn-warning" type="submit" data-dismiss="modal">
+            Editar Producto
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<h1 *ngIf="!_authS.usuario.uid">Login</h1>
+<h1 *ngIf="_authS.usuario.uid">Logout</h1>
+
+<button
+  class="btn btn-danger mb-2"
+  (click)="ingresar()"
+  *ngIf="!_authS.usuario.uid"
+>
+  Login Google
+</button>
+
+<button
+  class="btn btn-primary mb-2"
+  (click)="salir()"
+  *ngIf="_authS.usuario.uid"
+>
+  Logout
+</button>
+
+<hr />
+<div class="row justify-content-center" *ngIf="_authS.usuario.uid">
+  <div class="col-5">
+    <div class="card">
+      <img
+        src="{{_authS.usuario.photoURL}}"
+        class="card-img-top"
+        alt="usuario"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{_authS.usuario.nombre}}</h5>
+        <p class="card-text">{{_authS.usuario.uid}}</p>
+        <p class="card-text">
+          <small class="text-muted">{{_authS.usuario.email}}</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
